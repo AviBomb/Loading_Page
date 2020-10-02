@@ -1,11 +1,9 @@
-//Initial Setup
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
 canvas.width = innerWidth
 canvas.height = innerHeight
 
-//Variables
 const mouse = {
     x: innerWidth / 2,
     y: innerHeight / 2
@@ -13,7 +11,6 @@ const mouse = {
 
 const colors = ['#FF0001', '#FFBC00', '#F06F05', '#FFFF00', '#FFFC40']
 
-// Event Listeners
 addEventListener('mousemove', event => {
     mouse.x = event.clientX
     mouse.y = event.clientY
@@ -26,7 +23,6 @@ addEventListener('resize', () => {
     init()
 })
 
-//Utility Functions
 function randomIntFromRange(min,max){
     return Math.floor(Math.random()*(max-min+1)+min);
 }
@@ -35,7 +31,6 @@ function randomColor(colors){
     return colors[Math.floor(Math.random()*colors.length)];
 }
 
-// Objects
 function Particle(x, y, radius, color) {
     this.x = x
     this.y = y
@@ -48,19 +43,11 @@ function Particle(x, y, radius, color) {
 
     this.update = () => {
         const lastPoint = {x: this.x , y: this.y};
-
-        //Moves Points Over time
         this.radians += this.velocity;
-
-        //Drag Effect
         this.lastMouse.x += (mouse.x-this.lastMouse.x)*0.05;
         this.lastMouse.y += (mouse.y-this.lastMouse.y)*0.05;
-        //Circular Motion
         this.x = this.lastMouse.x + Math.cos(this.radians)*this.distanceFromCenter;
         this.y = this.lastMouse.y + Math.sin(this.radians)*this.distanceFromCenter;
-
-        /*console.log(Math.cos(this.radians));*/
-
         this.draw(lastPoint);
     };
 
@@ -75,7 +62,6 @@ function Particle(x, y, radius, color) {
     };
 }
 
-// Implementation
 let particles
 function init() {
     particles = []
@@ -87,7 +73,6 @@ function init() {
     console.log(particles);
 }
 
-// Animation Loop
 function animate() {
     requestAnimationFrame(animate)
     c.fillStyle = 'rgba(255,255,255,0.05)';

@@ -11,7 +11,7 @@ const mouse = {
     y: innerHeight / 2
 }
 
-const colors = ['#FF0001', '#FFBC00', '#F06F05', '#FFFF00']
+const colors = ['#FF0001', '#FFBC00', '#F06F05', '#FFFF00', '#FFFC40']
 
 // Event Listeners
 addEventListener('mousemove', event => {
